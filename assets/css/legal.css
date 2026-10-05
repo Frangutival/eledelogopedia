@@ -1,0 +1,267 @@
+/* =============================================================
+   PAGINAS LEGALES — aviso legal y politica de cookies
+   -------------------------------------------------------------
+   Se carga EN LUGAR de sections.css, no ademas: estas paginas no
+   tienen hero, servicios ni equipo, asi que no necesitan nada de
+   la composicion de la portada.
+
+   El orden de carga es: tokens -> base -> layout -> components ->
+   legal. Se reutilizan de ahi `.container`, `.eyebrow`, `.link`,
+   `.skip-link`, `.visually-hidden` y `.link__meta`.
+
+   Son paginas SIN JavaScript a proposito: un documento legal debe
+   poder leerse siempre, tambien con el script bloqueado.
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   CABECERA Y PIE REDUCIDOS
+   ------------------------------------------------------------- */
+.legal-header {
+  border-bottom: 1px solid var(--c-line);
+}
+
+.legal-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-block: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.legal-header__logo img {
+  display: block;
+  width: clamp(180px, 22vw, 240px);
+  height: auto;
+}
+
+.legal-header__back {
+  font-family: var(--f-serif);
+  font-size: var(--t-sm);
+  font-weight: var(--w-serif-bold);
+}
+
+.legal-footer {
+  margin-top: clamp(4rem, 8vw, 7rem);
+  padding-block: clamp(2rem, 4vw, 3rem);
+  background: var(--c-ink);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.legal-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem var(--s-5);
+  font-size: var(--t-sm);
+}
+
+.legal-footer__res {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--t-xs);
+}
+
+/* -------------------------------------------------------------
+   CUERPO DEL DOCUMENTO
+   ------------------------------------------------------------- */
+.legal {
+  padding-top: clamp(3rem, 6vw, 5.5rem);
+}
+
+/* Medida de lectura corta: un texto legal se lee peor que cualquier
+   otro, asi que conviene apretar la linea por debajo de lo habitual. */
+.legal__inner {
+  max-width: 44rem;
+}
+
+.legal__title {
+  margin-top: clamp(0.75rem, 1.5vw, 1.25rem);
+  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.75rem);
+  letter-spacing: var(--ls-tight);
+}
+
+.legal__lead {
+  margin-top: clamp(1.25rem, 2.5vw, 2rem);
+  padding-bottom: clamp(1.75rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--c-line);
+  font-size: var(--t-lg);
+  line-height: 1.6;
+  color: var(--c-grey-700);
+}
+
+/* Resumen destacado, para lo que el visitante necesita saber de un
+   vistazo sin leerse el documento entero. */
+.legal__callout {
+  margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  background: var(--c-grey-050);
+  border-left: 2px solid var(--c-ink);
+  font-size: var(--t-lg);
+  line-height: 1.6;
+}
+
+.legal__section {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.legal__section h2 {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--c-line);
+  font-size: var(--t-h3);
+  letter-spacing: var(--ls-tight);
+}
+
+.legal__section h3 {
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: var(--t-lg);
+  font-weight: var(--w-serif-bold);
+}
+
+.legal__section p,
+.legal__list {
+  margin-top: var(--s-4);
+  line-height: 1.8;
+  color: var(--c-grey-700);
+}
+
+.legal__section h2 + p,
+.legal__section h3 + p {
+  margin-top: var(--s-5);
+}
+
+.legal__section strong {
+  font-weight: 500;
+  color: var(--c-ink);
+}
+
+.legal__list {
+  padding-left: 1.35rem;
+  list-style: disc;
+}
+
+.legal__list li + li {
+  margin-top: 0.6rem;
+}
+
+.legal__note {
+  font-size: var(--t-sm);
+  color: var(--c-grey-600);
+}
+
+/* -------------------------------------------------------------
+   BLOQUE DE DATOS (definiciones)
+   Dos columnas en escritorio, apilado en movil. El termino va en
+   versalitas para que la vista salte de dato a dato sin leerlo todo.
+   ------------------------------------------------------------- */
+.legal-data {
+  display: grid;
+  grid-template-columns: minmax(11rem, 14rem) 1fr;
+  gap: 0;
+  margin-top: var(--s-5);
+  border-top: 1px solid var(--c-line);
+}
+
+.legal-data dt {
+  padding: var(--s-4) var(--s-4) var(--s-4) 0;
+  border-bottom: 1px solid var(--c-line);
+  font-family: var(--f-serif);
+  font-size: var(--t-xs);
+  font-weight: var(--w-serif-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-grey-600);
+}
+
+.legal-data dd {
+  padding: var(--s-4) 0;
+  border-bottom: 1px solid var(--c-line);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .legal-data {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* Apilado: el termino pierde su filete para no partir el par en dos */
+  .legal-data dt {
+    padding: var(--s-4) 0 0.35rem;
+    border-bottom: 0;
+  }
+  .legal-data dd {
+    padding-top: 0;
+  }
+}
+
+/* -------------------------------------------------------------
+   TABLA
+   El contenedor desplaza en horizontal por si solo: el cuerpo de la
+   pagina nunca debe desplazarse de lado.
+   ------------------------------------------------------------- */
+.legal-table__wrap {
+  margin-top: var(--s-5);
+  overflow-x: auto;
+}
+
+.legal-table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-size: var(--t-sm);
+  text-align: left;
+}
+
+.legal-table th,
+.legal-table td {
+  padding: var(--s-4) var(--s-4) var(--s-4) 0;
+  border-bottom: 1px solid var(--c-line);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.legal-table th {
+  border-bottom-color: var(--c-line-strong);
+  font-family: var(--f-serif);
+  font-size: var(--t-xs);
+  font-weight: var(--w-serif-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-grey-600);
+}
+
+.legal-table td {
+  color: var(--c-grey-700);
+}
+
+.legal-table code {
+  font-size: 0.9em;
+  color: var(--c-ink);
+}
+
+/* -------------------------------------------------------------
+   CIERRE
+   ------------------------------------------------------------- */
+.legal__updated {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: clamp(1.5rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--c-line);
+  font-size: var(--t-sm);
+  color: var(--c-grey-600);
+}
+
+.legal__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+  margin-top: var(--s-4);
+  font-family: var(--f-serif);
+  font-size: var(--t-sm);
+  font-weight: var(--w-serif-bold);
+}
+
+/* En estas paginas `.link__meta` cae sobre fondo claro, al contrario
+   que en el pie de la portada, que es oscuro. */
+.legal .link__meta,
+.legal__nav .link__meta {
+  color: var(--c-grey-600);
+}

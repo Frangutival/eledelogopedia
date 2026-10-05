@@ -1,0 +1,163 @@
+/* =============================================================
+   LAYOUT — contenedores, secciones, rejilla editorial y reveals
+   ============================================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--narrow {
+  max-width: var(--container-narrow);
+}
+
+.section {
+  position: relative;
+  padding-block: var(--space-section);
+}
+
+.section--sm {
+  padding-block: var(--space-section-sm);
+}
+
+.section--tint {
+  background: var(--c-off-white);
+}
+
+/* Superficie oscura: se usa una sola vez (Forma de trabajar) para
+   dar contraste editorial sin romper el dominio del blanco. */
+.on-dark {
+  background: var(--c-ink);
+  color: var(--c-white);
+}
+
+.on-dark .eyebrow {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.on-dark .eyebrow::before {
+  background: var(--c-line-invert);
+}
+
+.on-dark .section-intro {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ---------- Rejilla de 12 columnas ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--s-6);
+}
+
+/* ---------- Cabecera de seccion ---------- */
+/* Antetítulo: serif en versalitas y con peso, no una etiqueta genérica */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0;
+  font-family: var(--f-serif);
+  font-size: var(--t-eyebrow);
+  font-weight: var(--w-serif-bold);
+  line-height: 1;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-grey-700);
+}
+
+.eyebrow::before {
+  content: '';
+  width: clamp(24px, 4vw, 48px);
+  height: 1px;
+  background: var(--c-line-strong);
+}
+
+.eyebrow--plain::before {
+  display: none;
+}
+
+.section-head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: var(--s-5);
+  align-items: end;
+  margin-bottom: clamp(2.5rem, 1.5rem + 3vw, 5rem);
+}
+
+.section-head__title {
+  grid-column: 1 / span 7;
+}
+
+.section-head__title h2,
+.reviews__head h2 {
+  margin-top: clamp(1rem, 2vw, 1.75rem);
+}
+
+.section-head__aside {
+  grid-column: 9 / span 4;
+  padding-bottom: 0.6rem;
+}
+
+.section-intro {
+  max-width: 46ch;
+  color: var(--c-grey-700);
+  font-size: var(--t-lg);
+  line-height: 1.65;
+}
+
+@media (max-width: 900px) {
+  .section-head__title,
+  .section-head__aside {
+    grid-column: 1 / -1;
+  }
+  .section-head__aside {
+    padding-bottom: 0;
+  }
+}
+
+/* Linea divisoria fina — recurso grafico recurrente */
+.rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--c-line);
+}
+
+.on-dark .rule {
+  background: var(--c-line-invert);
+}
+
+/* =============================================================
+   REVEAL — aparicion progresiva al entrar en viewport
+   Sutil: opacidad + desplazamiento minimo, curva lenta.
+   ============================================================= */
+
+/* El estado oculto solo se aplica si hay JavaScript (clase `js` en <html>).
+   Sin JS, el contenido es visible por defecto: nunca queda una pagina en blanco. */
+.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity var(--d-slow) var(--ease-out),
+    transform var(--d-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.js [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,103 @@
+/* =============================================================
+   TOKENS — Sistema de diseño ELE DE LOGOPEDIA
+   Blanco + negro + grises neutros. Sin color de acento.
+   ============================================================= */
+
+:root {
+  /* ---------- Color ---------- */
+  --c-ink: #0a0a0a; /* negro profundo — titulares, logo, CTA */
+  --c-ink-soft: #1c1c1c; /* negro suavizado — superficies oscuras */
+  --c-white: #ffffff; /* blanco puro — color dominante */
+  --c-off-white: #fbfbfb; /* blanco roto — profundidad minima */
+  --c-grey-050: #f4f4f4;
+  --c-grey-100: #ebebeb;
+  --c-grey-200: #dcdcdc;
+  --c-grey-400: #a8a8a8;
+  --c-grey-600: #6e6e6e; /* texto secundario sobre blanco (AA) */
+  --c-grey-700: #4a4a4a;
+
+  /* Lineas finas: el recurso grafico principal de la identidad */
+  --c-line: rgba(10, 10, 10, 0.12);
+  --c-line-strong: rgba(10, 10, 10, 0.24);
+  --c-line-invert: rgba(255, 255, 255, 0.16);
+  /* Borde de controles interactivos: mas marcado para cumplir el
+     contraste minimo de 3:1 exigido a los componentes de interfaz. */
+  --c-line-control: rgba(10, 10, 10, 0.45);
+
+  /* ---------- Tipografia ----------
+     La serif es la VOZ DE MARCA: titulares, navegacion, botones y
+     antetitulos. Tiene caracter propio y peso real (400-700), para
+     acompañar al monograma del logotipo.
+     La sans queda para texto corrido e informacion, donde manda la
+     legibilidad y conviene que no compita.
+
+     Para cambiar la serif basta con tocar esta linea y la URL de
+     Google Fonts en index.html. Alternativas valoradas, por si se
+     prefiere otro caracter: 'Bodoni Moda' (mas editorial de moda),
+     'Newsreader' (mas sobria), 'Marcellus' (mas clasica).           */
+  --f-serif: 'Fraunces', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --f-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* Pesos de la serif */
+  --w-serif: 400;
+  --w-serif-mid: 500;
+  --w-serif-bold: 600;
+
+  /* Escala fluida (min 360px → max 1440px) */
+  --t-eyebrow: 0.75rem; /* antetitulos en versalitas */
+  --t-xs: 0.8125rem;
+  --t-sm: 0.9375rem;
+  --t-base: clamp(0.9375rem, 0.9rem + 0.18vw, 1.0625rem);
+  --t-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --t-xl: clamp(1.25rem, 1.1rem + 0.7vw, 1.75rem);
+  --t-h3: clamp(1.375rem, 1.2rem + 0.85vw, 2rem);
+  --t-h2: clamp(2rem, 1.5rem + 2.3vw, 3.75rem);
+  --t-h1: clamp(2.75rem, 1.6rem + 5vw, 6rem);
+  --t-display: clamp(2.25rem, 1.3rem + 4.2vw, 5rem);
+
+  --lh-tight: 1.04;
+  --lh-title: 1.12;
+  --lh-body: 1.75;
+  --ls-eyebrow: 0.22em;
+  --ls-tight: -0.02em;
+
+  /* ---------- Espaciado ---------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+
+  /* Ritmo vertical entre secciones — generoso, la web debe respirar */
+  --space-section: clamp(5rem, 3rem + 9vw, 11rem);
+  --space-section-sm: clamp(3.5rem, 2.5rem + 5vw, 7rem);
+
+  /* ---------- Layout ---------- */
+  --container: 1320px;
+  --container-narrow: 880px;
+  --gutter: clamp(1.25rem, 0.5rem + 4vw, 5rem);
+  --header-h: 88px;
+  --header-h-scrolled: 68px;
+
+  /* ---------- Formas ---------- */
+  --r-pill: 999px;
+  --r-img: 2px;
+
+  /* ---------- Movimiento ---------- */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --d-fast: 0.25s;
+  --d-mid: 0.45s;
+  --d-slow: 0.9s;
+}
+
+@media (max-width: 640px) {
+  :root {
+    --header-h: 68px;
+    --header-h-scrolled: 60px;
+  }
+}

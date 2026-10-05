@@ -1,0 +1,1023 @@
+/* =============================================================
+   COMPONENTES — botones, enlaces, navegacion, tarjetas, carrusel
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   BOTONES
+   Estados hover / focus / active en todos ellos.
+   La inversion negro <-> blanco es el gesto de marca.
+   ------------------------------------------------------------- */
+.btn {
+  --btn-gap: 0.7rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--btn-gap);
+  padding: 1.1rem 2.3rem;
+  border-radius: var(--r-pill);
+  /* Serif con peso: el botón es una pieza de marca, no un control neutro */
+  font-family: var(--f-serif);
+  font-size: 1.0625rem;
+  font-weight: var(--w-serif-bold);
+  line-height: 1.15;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--d-mid) var(--ease),
+    color var(--d-mid) var(--ease),
+    box-shadow var(--d-mid) var(--ease),
+    transform var(--d-mid) var(--ease);
+}
+
+.btn__arrow {
+  display: inline-block;
+  transition: transform var(--d-mid) var(--ease);
+}
+
+.btn:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+/* Primario: negro sobre blanco → se invierte al hover */
+.btn--primary {
+  background: var(--c-ink);
+  color: var(--c-white);
+  box-shadow: inset 0 0 0 1px var(--c-ink);
+}
+
+.btn--primary:hover {
+  background: var(--c-white);
+  color: var(--c-ink);
+}
+
+/* Secundario: contorno fino → se rellena al hover */
+.btn--outline {
+  background: transparent;
+  color: var(--c-ink);
+  box-shadow: inset 0 0 0 1px var(--c-line-control);
+}
+
+.btn--outline:hover {
+  background: var(--c-ink);
+  color: var(--c-white);
+  box-shadow: inset 0 0 0 1px var(--c-ink);
+}
+
+/* Variantes sobre fondo oscuro */
+.on-dark .btn--primary,
+.footer .btn--primary {
+  background: var(--c-white);
+  color: var(--c-ink);
+  box-shadow: inset 0 0 0 1px var(--c-white);
+}
+
+.on-dark .btn--primary:hover,
+.footer .btn--primary:hover {
+  background: transparent;
+  color: var(--c-white);
+}
+
+.on-dark .btn--outline,
+.footer .btn--outline {
+  color: var(--c-white);
+  box-shadow: inset 0 0 0 1px var(--c-line-invert);
+}
+
+.on-dark .btn--outline:hover,
+.footer .btn--outline:hover {
+  background: var(--c-white);
+  color: var(--c-ink);
+  box-shadow: inset 0 0 0 1px var(--c-white);
+}
+
+.btn--sm {
+  padding: 0.72rem 1.5rem;
+  font-size: 0.9375rem;
+}
+
+/* -------------------------------------------------------------
+   ENLACE DE TEXTO con subrayado animado
+   ------------------------------------------------------------- */
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-bottom: 2px;
+  color: inherit;
+  transition: color var(--d-fast) var(--ease);
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--d-mid) var(--ease-out);
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Variante que parte con el subrayado visible y lo retira */
+.link--underlined::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.link--underlined:hover::after,
+.link--underlined:focus-visible::after {
+  transform: scaleX(0);
+  transform-origin: right;
+}
+
+.link--muted {
+  color: var(--c-grey-600);
+}
+
+.link--muted:hover {
+  color: var(--c-ink);
+}
+
+/* -------------------------------------------------------------
+   CABECERA / NAVEGACION
+   ------------------------------------------------------------- */
+/* La cabecera tiene dos estados:
+
+   1. SOBRE EL HERO  — fondo transparente y contenido en blanco, apoyado
+      en el degradado superior del hero para garantizar la legibilidad.
+   2. SOLIDA (.is-solid) — al dejar atrás el hero: fondo blanco
+      translúcido, contenido en negro y altura reducida.
+
+   El estado por defecto es el SÓLIDO: si el JavaScript no llegara a
+   ejecutarse, la cabecera se ve legible sobre fondo blanco. El estado
+   claro solo se aplica con la clase `js` presente. */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  color: var(--c-ink);
+  background: rgba(255, 255, 255, 0.88);
+  -webkit-backdrop-filter: saturate(140%) blur(14px);
+  backdrop-filter: saturate(140%) blur(14px);
+  box-shadow: 0 1px 0 var(--c-line);
+  transition:
+    background-color var(--d-mid) var(--ease),
+    box-shadow var(--d-mid) var(--ease),
+    color var(--d-mid) var(--ease);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-5);
+  height: var(--header-h-scrolled);
+  transition: height var(--d-mid) var(--ease);
+}
+
+/* Estado 1: sobre el hero */
+.js .header:not(.is-solid) {
+  color: var(--c-white);
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
+.js .header:not(.is-solid) .header__inner {
+  height: var(--header-h);
+}
+
+/* Con el menú móvil abierto el fondo es blanco: el contenido vuelve a negro */
+.js .header.is-menu-open {
+  color: var(--c-ink);
+}
+
+.header__logo {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  transition: opacity var(--d-fast) var(--ease);
+}
+
+.header__logo:hover {
+  opacity: 0.7;
+}
+
+.header__logo img {
+  width: auto;
+  height: 32px;
+  transition:
+    height var(--d-mid) var(--ease),
+    opacity var(--d-mid) var(--ease);
+}
+
+.js .header:not(.is-solid) .header__logo img {
+  height: 40px;
+}
+
+/* Versión en blanco del logotipo, superpuesta y revelada sobre el hero */
+.header__logo-light {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.js .header:not(.is-solid):not(.is-menu-open) .header__logo-dark {
+  opacity: 0;
+}
+
+.js .header:not(.is-solid):not(.is-menu-open) .header__logo-light {
+  opacity: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 2.4vw, 2.5rem);
+}
+
+.nav__link {
+  position: relative;
+  padding-block: 0.35rem;
+  font-family: var(--f-serif);
+  font-size: 1.0625rem;
+  font-weight: var(--w-serif-mid);
+  letter-spacing: 0.005em;
+  color: inherit;
+  transition: color var(--d-fast) var(--ease);
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform var(--d-mid) var(--ease-out);
+}
+
+.nav__link:hover::after,
+.nav__link:focus-visible::after,
+.nav__link[aria-current='true']::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+
+/* CTA de cabecera sobre el hero: contorno blanco en lugar de bloque negro */
+.js .header:not(.is-solid):not(.is-menu-open) .btn--primary {
+  background: transparent;
+  color: var(--c-white);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+.js .header:not(.is-solid):not(.is-menu-open) .btn--primary:hover {
+  background: var(--c-white);
+  color: var(--c-ink);
+  box-shadow: inset 0 0 0 1px var(--c-white);
+}
+
+/* ---------- Boton hamburguesa ---------- */
+.burger {
+  display: none;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.burger__box {
+  position: relative;
+  display: block;
+  width: 22px;
+  height: 10px;
+}
+
+.burger__line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  /* Sigue el color de la cabecera: blanco sobre el hero, negro al bajar */
+  background: currentColor;
+  transition:
+    transform var(--d-mid) var(--ease),
+    opacity var(--d-fast) var(--ease);
+}
+
+.burger__line:nth-child(1) {
+  top: 0;
+}
+.burger__line:nth-child(2) {
+  bottom: 0;
+}
+
+.burger[aria-expanded='true'] .burger__line:nth-child(1) {
+  transform: translateY(4.5px) rotate(45deg);
+}
+
+.burger[aria-expanded='true'] .burger__line:nth-child(2) {
+  transform: translateY(-4.5px) rotate(-45deg);
+}
+
+/* ---------- Menu movil ---------- */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--header-h) + 2rem) var(--gutter) 2.5rem;
+  background: var(--c-white);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition:
+    opacity var(--d-mid) var(--ease),
+    transform var(--d-mid) var(--ease),
+    visibility var(--d-mid) var(--ease);
+}
+
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.mobile-menu__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.mobile-menu__item {
+  border-bottom: 1px solid var(--c-line);
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out);
+}
+
+.mobile-menu.is-open .mobile-menu__item {
+  opacity: 1;
+  transform: none;
+  transition-delay: calc(80ms + var(--i, 0) * 55ms);
+}
+
+.mobile-menu__link {
+  display: block;
+  padding: 1.05rem 0;
+  font-family: var(--f-serif);
+  font-weight: var(--w-serif-mid);
+  font-size: clamp(1.75rem, 8vw, 2.5rem);
+  line-height: 1.2;
+  letter-spacing: var(--ls-tight);
+  transition: opacity var(--d-fast) var(--ease);
+}
+
+.mobile-menu__link:hover {
+  opacity: 0.55;
+}
+
+.mobile-menu__foot {
+  margin-top: auto;
+  padding-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s var(--ease-out),
+    transform 0.5s var(--ease-out);
+}
+
+.mobile-menu.is-open .mobile-menu__foot {
+  opacity: 1;
+  transform: none;
+  transition-delay: 400ms;
+}
+
+.mobile-menu__meta {
+  font-size: var(--t-sm);
+  color: var(--c-grey-600);
+}
+
+/* 1120 px y no 1024: con seis enlaces más el botón, por debajo de ese
+   ancho la navegación queda apretada contra el logotipo.
+   Si se cambia este valor, ajustar también el matchMedia de nav.js. */
+@media (max-width: 1120px) {
+  .nav,
+  .header__actions .btn {
+    display: none;
+  }
+  .burger {
+    display: inline-flex;
+  }
+}
+
+/* -------------------------------------------------------------
+   MEDIA — imagenes con zoom minimo al hover
+   ------------------------------------------------------------- */
+.media {
+  position: relative;
+  /* `display: block` porque además de en <figure> se usa sobre <span>,
+     dentro de los botones de la galería. */
+  display: block;
+  overflow: hidden;
+  border-radius: var(--r-img);
+  background: var(--c-grey-050);
+}
+
+/* Sobre superficie oscura, el color de espera no puede ser el gris claro:
+   se vería un rectángulo blanco mientras la fotografía carga. */
+.on-dark .media {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Direccion artistica en blanco y negro por defecto. */
+  filter: grayscale(100%) contrast(1.02);
+  transition:
+    transform 1.2s var(--ease-out),
+    filter var(--d-slow) var(--ease);
+}
+
+/* Excepcion deliberada: los retratos del equipo van EN COLOR, porque son
+   las personas y conviene que se las vea tal cual. El resto de fotografias
+   (hero y filosofia) siguen en blanco y negro.
+   Esta regla debe ir despues de `.media img`: tienen la misma
+   especificidad y gana la ultima. */
+.media--color img {
+  filter: none;
+}
+
+.media--zoom:hover img {
+  transform: scale(1.035);
+}
+
+.media--4x5 {
+  aspect-ratio: 4 / 5;
+}
+.media--3x4 {
+  aspect-ratio: 3 / 4;
+}
+
+/* -------------------------------------------------------------
+   TARJETA / FILA DE SERVICIO (accordion accesible)
+   ------------------------------------------------------------- */
+.services__list {
+  border-top: 1px solid var(--c-line);
+}
+
+.service {
+  border-bottom: 1px solid var(--c-line);
+}
+
+/* El encabezado existe para la estructura del documento; el estilo
+   visible lo aporta el boton que contiene. */
+.service__h {
+  margin: 0;
+  font: inherit;
+  letter-spacing: inherit;
+}
+
+.service__trigger {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.75rem);
+  width: 100%;
+  padding: clamp(1.5rem, 2.2vw, 2.25rem) clamp(0.5rem, 1.5vw, 1.5rem);
+  text-align: left;
+  transition:
+    background-color var(--d-mid) var(--ease),
+    padding-inline var(--d-mid) var(--ease);
+}
+
+/* La sección de servicios va sobre blanco roto, así que el hover usa un
+   gris ligeramente más marcado para que el cambio sea perceptible. */
+.service__trigger:hover {
+  background: var(--c-grey-050);
+}
+
+.service__number {
+  font-family: var(--f-sans);
+  font-size: var(--t-xs);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--c-grey-600);
+  transition: color var(--d-mid) var(--ease);
+}
+
+.service__trigger:hover .service__number,
+.service__trigger[aria-expanded='true'] .service__number {
+  color: var(--c-ink);
+}
+
+.service__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem clamp(1rem, 2.5vw, 2rem);
+  min-width: 0;
+}
+
+.service__title {
+  font-family: var(--f-serif);
+  font-size: var(--t-xl);
+  font-weight: var(--w-serif-mid);
+  line-height: 1.2;
+  letter-spacing: var(--ls-tight);
+  transition: transform var(--d-mid) var(--ease);
+}
+
+.service__trigger:hover .service__title {
+  transform: translateX(4px);
+}
+
+.service__keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 1rem;
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  color: var(--c-grey-600);
+}
+
+.service__keyword + .service__keyword::before {
+  content: '·';
+  margin-right: 1rem;
+  color: var(--c-grey-400);
+}
+
+/* Indicador "+" que gira a "×" al abrir */
+.service__toggle {
+  position: relative;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--c-line);
+  transition:
+    box-shadow var(--d-mid) var(--ease),
+    background-color var(--d-mid) var(--ease),
+    transform var(--d-slow) var(--ease-out);
+}
+
+.service__toggle::before,
+.service__toggle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 1px;
+  background: var(--c-ink);
+  transform: translate(-50%, -50%);
+  transition:
+    transform var(--d-mid) var(--ease),
+    background-color var(--d-mid) var(--ease);
+}
+
+.service__toggle::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.service__trigger:hover .service__toggle {
+  background: var(--c-ink);
+  box-shadow: inset 0 0 0 1px var(--c-ink);
+}
+
+.service__trigger:hover .service__toggle::before,
+.service__trigger:hover .service__toggle::after {
+  background: var(--c-white);
+}
+
+.service__trigger[aria-expanded='true'] .service__toggle {
+  transform: rotate(135deg);
+}
+
+/* Panel desplegable — animacion de altura con grid 0fr → 1fr */
+.service__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--d-mid) var(--ease-out);
+}
+
+.service__panel.is-open {
+  grid-template-rows: 1fr;
+}
+
+/* Plegado: fuera del arbol de accesibilidad y del flujo */
+.service__panel[hidden] {
+  display: none;
+}
+
+.service__panel-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.service__body {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  padding: 0 clamp(0.5rem, 1.5vw, 1.5rem) clamp(1.75rem, 2.5vw, 2.5rem);
+}
+
+.service__text {
+  grid-column: 3 / span 8;
+  max-width: 62ch;
+  color: var(--c-grey-700);
+  font-size: var(--t-lg);
+  line-height: 1.7;
+  opacity: 0;
+  transform: translateY(6px);
+  transition:
+    opacity var(--d-mid) var(--ease),
+    transform var(--d-mid) var(--ease);
+}
+
+.service__panel.is-open .service__text {
+  opacity: 1;
+  transform: none;
+  transition-delay: 90ms;
+}
+
+@media (max-width: 900px) {
+  .service__text {
+    grid-column: 1 / -1;
+  }
+  .service__trigger {
+    grid-template-columns: auto 1fr auto;
+    gap: 1rem;
+    align-items: start;
+  }
+  .service__number {
+    padding-top: 0.45rem;
+  }
+  .service__toggle {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* -------------------------------------------------------------
+   CARRUSEL DE OPINIONES
+   ------------------------------------------------------------- */
+.reviews__viewport {
+  display: flex;
+  gap: var(--gutter);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding-bottom: 0.5rem;
+  /* Permite que las tarjetas lleguen al borde en movil */
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+}
+
+.reviews__viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.review {
+  flex: 0 0 calc((100% - var(--gutter) * 2) / 3);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-5);
+  padding: clamp(1.75rem, 2.5vw, 2.5rem);
+  background: var(--c-white);
+  box-shadow: inset 0 0 0 1px var(--c-line);
+  transition: box-shadow var(--d-mid) var(--ease);
+}
+
+.review:hover {
+  box-shadow: inset 0 0 0 1px var(--c-line-strong);
+}
+
+.review__stars {
+  display: flex;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: var(--c-ink);
+}
+
+.review__text {
+  flex: 1;
+  font-family: var(--f-serif);
+  font-size: var(--t-xl);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.review__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--c-line);
+}
+
+.review__author {
+  font-size: var(--t-sm);
+  font-weight: 400;
+}
+
+.review__source {
+  font-family: var(--f-serif);
+  font-size: var(--t-xs);
+  font-weight: var(--w-serif-bold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--c-grey-600);
+}
+
+/* La fecha acompaña a "Google" en la misma linea, pero sin gritar */
+.review__date {
+  font-weight: var(--w-serif);
+  letter-spacing: 0.08em;
+}
+
+/* Reseñas largas: se recortan y se despliegan.
+   `line-clamp` necesita todavia el prefijo -webkit- en todos los
+   navegadores, incluido Firefox, que lo implementa con ese nombre. */
+.review__text.is-clamped p {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+  line-clamp: 7;
+  overflow: hidden;
+}
+
+.review__more {
+  align-self: flex-start;
+  padding: 0;
+  font-family: var(--f-serif);
+  font-size: var(--t-xs);
+  font-weight: var(--w-serif-bold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--c-line-strong);
+  cursor: pointer;
+  transition: border-color var(--d-fast) var(--ease);
+}
+
+.review__more:hover {
+  border-color: var(--c-ink);
+}
+
+@media (max-width: 1024px) {
+  .review {
+    flex-basis: calc((100% - var(--gutter)) / 2);
+  }
+}
+
+@media (max-width: 700px) {
+  .review {
+    flex-basis: 88%;
+  }
+}
+
+/* Controles del carrusel */
+.carousel-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.carousel-controls[hidden] {
+  display: none;
+}
+
+.carousel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--c-line-control);
+  transition:
+    background-color var(--d-mid) var(--ease),
+    color var(--d-mid) var(--ease),
+    box-shadow var(--d-mid) var(--ease),
+    opacity var(--d-mid) var(--ease);
+}
+
+.carousel-btn:hover:not(:disabled) {
+  background: var(--c-ink);
+  color: var(--c-white);
+  box-shadow: inset 0 0 0 1px var(--c-ink);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* -------------------------------------------------------------
+   VISOR AMPLIADO DE LA GALERÍA (lightbox)
+   Diálogo modal sobre fondo oscuro. Las fotografías se ven
+   completas (`object-fit: contain`), nunca recortadas.
+   ------------------------------------------------------------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  opacity: 0;
+  transition: opacity var(--d-mid) var(--ease);
+}
+
+.lightbox[hidden] {
+  display: none;
+}
+
+.lightbox.is-open {
+  opacity: 1;
+}
+
+.lightbox__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.94);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.lightbox__dialog {
+  position: relative;
+  /* El relleno lateral deja sitio a las flechas fuera de la imagen en
+     pantallas anchas; en móvil se reduce a cero y quedan superpuestas. */
+  padding-inline: clamp(0rem, 7vw, 4.5rem);
+  max-width: min(100%, 1180px);
+  transform: translateY(14px) scale(0.985);
+  transition: transform var(--d-mid) var(--ease-out);
+}
+
+.lightbox.is-open .lightbox__dialog {
+  transform: none;
+}
+
+.lightbox__figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(0.85rem, 2vw, 1.4rem);
+}
+
+.lightbox__img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: min(74vh, 880px);
+  object-fit: contain;
+  border-radius: var(--r-img);
+  background: var(--c-ink-soft);
+}
+
+.lightbox__meta {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1.25rem;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.lightbox__caption {
+  font-family: var(--f-serif);
+  font-size: var(--t-lg);
+  font-weight: var(--w-serif-mid);
+  color: var(--c-white);
+}
+
+.lightbox__counter {
+  font-size: var(--t-xs);
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+}
+
+.lightbox__close,
+.lightbox__nav {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  color: var(--c-white);
+  background: rgba(10, 10, 10, 0.4);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.38);
+  transition:
+    background-color var(--d-mid) var(--ease),
+    color var(--d-mid) var(--ease),
+    box-shadow var(--d-mid) var(--ease);
+}
+
+.lightbox__close:hover,
+.lightbox__nav:hover {
+  background: var(--c-white);
+  color: var(--c-ink);
+  box-shadow: inset 0 0 0 1px var(--c-white);
+}
+
+.lightbox__close {
+  position: fixed;
+  top: clamp(0.85rem, 3vw, 2rem);
+  right: clamp(0.85rem, 3vw, 2rem);
+}
+
+.lightbox__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox__nav[hidden] {
+  display: none;
+}
+
+.lightbox__nav--prev {
+  left: 0;
+}
+
+.lightbox__nav--next {
+  right: 0;
+}
+
+/* -------------------------------------------------------------
+   PLACEHOLDER DE CONTENIDO PENDIENTE
+   Marcado de forma inequivoca para que no se confunda con
+   contenido real y sea facil de localizar antes de publicar.
+   ------------------------------------------------------------- */
+.placeholder-note {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px dashed var(--c-line-strong);
+  border-radius: var(--r-img);
+  background: var(--c-off-white);
+  color: var(--c-grey-700);
+}
+
+.placeholder-note__label {
+  font-size: var(--t-eyebrow);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-grey-600);
+}
+
+.placeholder-note__text {
+  font-size: var(--t-base);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+.member__bio-placeholder {
+  margin-top: clamp(1.5rem, 2.5vw, 2.25rem);
+}

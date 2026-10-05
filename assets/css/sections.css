@@ -1,0 +1,897 @@
+﻿/* =============================================================
+   SECCIONES — composiciones editoriales
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   HERO
+   Fotografía a sangre ocupando la ventana completa desde el primer
+   scroll. El texto se apoya en un doble degradado —no en un velo
+   plano— para que siga siendo legible sea cual sea la fotografía
+   definitiva, incluso si es clara.
+   ------------------------------------------------------------- */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-top: calc(var(--header-h) + clamp(2rem, 6vw, 5rem));
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  overflow: hidden;
+  /* También sirve de color de respaldo mientras carga la imagen */
+  background: var(--c-ink);
+  color: var(--c-white);
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+}
+
+.hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* La fotografía es vertical (1000x1600) y el hueco apaisado, así que en
+     escritorio solo se ve una franja horizontal. El 67% la sitúa de forma
+     que Lourdes quede completa, con aire sobre la cabeza y el escritorio
+     al borde inferior. Subir el valor baja el encuadre. En móvil la
+     ventana es vertical y se ve la fotografía casi entera. */
+  object-position: 50% var(--hero-focus, 67%);
+  /* La fotografía viene en color: el grayscale aplica la dirección
+     artística en blanco y negro, y el brightness la asienta para que el
+     texto blanco agarre sobre las paredes claras del gabinete. */
+  filter: grayscale(100%) contrast(1.03) brightness(0.86);
+}
+
+/* Dos capas que se suman:
+   - vertical, protege cabecera y pie;
+   - lateral, protege el bloque de texto.
+   Calibrado contra la pared casi blanca de la mitad izquierda, que es
+   el peor caso de contraste de esta fotografía. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.52) 0%,
+      rgba(10, 10, 10, 0.12) 20%,
+      rgba(10, 10, 10, 0.08) 52%,
+      rgba(10, 10, 10, 0.74) 100%
+    ),
+    linear-gradient(
+      96deg,
+      rgba(10, 10, 10, 0.8) 0%,
+      rgba(10, 10, 10, 0.66) 38%,
+      rgba(10, 10, 10, 0.38) 58%,
+      rgba(10, 10, 10, 0.08) 76%,
+      rgba(10, 10, 10, 0) 88%
+    );
+}
+
+.hero__inner,
+.hero__foot {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* El texto se queda dentro de la zona protegida por el degradado lateral
+   y por debajo del 58% del ancho, de modo que no llega al rostro de la
+   fotografía (que arranca en torno al 60%). */
+.hero__content {
+  max-width: min(46rem, 70%);
+}
+
+.hero .eyebrow {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.hero .eyebrow::before {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.hero__title {
+  margin-top: clamp(1.25rem, 2.2vw, 2rem);
+  font-size: clamp(2.9rem, 1.1rem + 6.4vw, 7rem);
+  font-weight: var(--w-serif-mid);
+  line-height: 0.98;
+  letter-spacing: -0.025em;
+}
+
+.hero__lead {
+  max-width: 46ch;
+  margin-top: clamp(1.5rem, 2.4vw, 2.25rem);
+  font-size: var(--t-lg);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-4);
+  margin-top: clamp(2rem, 3.4vw, 3rem);
+}
+
+/* Pie del hero: reclamo a la izquierda, invitación al scroll a la derecha */
+.hero__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4) var(--s-6);
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding-top: clamp(1.25rem, 2vw, 1.75rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+.hero__note {
+  max-width: 58ch;
+  font-size: var(--t-sm);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero__note strong {
+  display: block;
+  font-family: var(--f-serif);
+  font-size: var(--t-lg);
+  font-weight: var(--w-serif-bold);
+  letter-spacing: -0.005em;
+  color: var(--c-white);
+}
+
+.hero__scroll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  font-family: var(--f-serif);
+  font-size: var(--t-eyebrow);
+  font-weight: var(--w-serif-bold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+  transition: color var(--d-fast) var(--ease);
+}
+
+.hero__scroll:hover {
+  color: var(--c-white);
+}
+
+.hero__scroll-line {
+  display: block;
+  width: 46px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.6);
+  transform-origin: left;
+  animation: heroLine 3.2s var(--ease-out) infinite;
+}
+
+@keyframes heroLine {
+  0%,
+  100% {
+    transform: scaleX(0.45);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__scroll-line {
+    animation: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero__content {
+    max-width: 100%;
+  }
+
+  /* En vertical el texto ocupa todo el ancho, así que el degradado deja
+     de ser lateral y pasa a ser inferior, y bastante más denso: aquí el
+     titular cae sobre la parte clara de la fotografía. */
+  .hero__scrim {
+    background: linear-gradient(
+      180deg,
+      rgba(10, 10, 10, 0.62) 0%,
+      rgba(10, 10, 10, 0.3) 18%,
+      rgba(10, 10, 10, 0.5) 45%,
+      rgba(10, 10, 10, 0.88) 100%
+    );
+  }
+}
+
+@media (max-width: 640px) {
+  .hero__actions .btn {
+    flex: 1 1 100%;
+  }
+
+  .hero__scroll {
+    display: none;
+  }
+}
+
+/* -------------------------------------------------------------
+   FILOSOFIA
+   ------------------------------------------------------------- */
+.philosophy {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Marca de agua muy sutil inspirada en el monograma del logo */
+.philosophy__mark {
+  position: absolute;
+  top: clamp(-2rem, -3vw, 0rem);
+  right: calc(var(--gutter) * 0.4);
+  width: clamp(160px, 22vw, 320px);
+  opacity: 0.045;
+  pointer-events: none;
+  user-select: none;
+}
+
+.philosophy__inner {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.philosophy__media {
+  grid-column: 1 / span 4;
+}
+
+.philosophy__content {
+  grid-column: 6 / span 7;
+}
+
+.philosophy__statement {
+  margin-top: clamp(1.5rem, 2.5vw, 2.25rem);
+  font-family: var(--f-serif);
+  font-size: var(--t-display);
+  font-weight: var(--w-serif-mid);
+  line-height: 1.14;
+  letter-spacing: var(--ls-tight);
+  text-wrap: balance;
+}
+
+.philosophy__answer {
+  max-width: 48ch;
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+  padding-top: clamp(1.75rem, 3vw, 2.5rem);
+  border-top: 1px solid var(--c-line);
+  font-size: var(--t-lg);
+  line-height: 1.65;
+  color: var(--c-grey-700);
+}
+
+.philosophy__answer strong {
+  font-weight: 400;
+  color: var(--c-ink);
+}
+
+@media (max-width: 900px) {
+  .philosophy__media {
+    grid-column: 1 / span 7;
+  }
+  .philosophy__content {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .philosophy__media {
+    grid-column: 1 / -1;
+  }
+}
+
+/* -------------------------------------------------------------
+   SERVICIOS
+   ------------------------------------------------------------- */
+.services__hint {
+  margin-top: var(--s-4);
+  font-size: var(--t-sm);
+  color: var(--c-grey-600);
+}
+
+.services__foot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-4) var(--s-6);
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
+}
+
+.services__foot-text {
+  font-size: var(--t-sm);
+  color: var(--c-grey-600);
+}
+
+/* -------------------------------------------------------------
+   FORMA DE TRABAJAR (superficie oscura)
+   ------------------------------------------------------------- */
+.process__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+}
+
+.process__item {
+  padding: clamp(1.75rem, 3vw, 2.75rem) clamp(1rem, 2vw, 2rem) clamp(2.5rem, 4vw, 4rem) 0;
+  border-top: 1px solid var(--c-line-invert);
+  transition: border-color var(--d-slow) var(--ease);
+}
+
+.process__item:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.process__number {
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.process__title {
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
+  font-family: var(--f-serif);
+  font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.5rem);
+  font-weight: var(--w-serif-mid);
+  letter-spacing: var(--ls-tight);
+}
+
+.process__text {
+  margin-top: var(--s-3);
+  font-size: var(--t-sm);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Cierre de la sección: fotografía y frase final en la misma banda.
+   El filete y el aire superior los lleva el contenedor, no la frase, para
+   que la línea cruce todo el ancho y la imagen quede por debajo de ella. */
+.process__outro {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: clamp(2rem, 4vw, 3rem);
+  align-items: center;
+  margin-top: clamp(2.5rem, 5vw, 4.5rem);
+  padding-top: clamp(2rem, 3vw, 3rem);
+  border-top: 1px solid var(--c-line-invert);
+}
+
+/* Mismas cuatro columnas que la fotografía de Filosofía y que los retratos
+   del equipo: la web mantiene una sola medida para las fotos de sección. */
+.process__media {
+  grid-column: 1 / span 4;
+}
+
+.process__closing {
+  grid-column: 6 / span 7;
+  max-width: 58ch;
+  font-family: var(--f-serif);
+  font-size: var(--t-h3);
+  line-height: 1.35;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-white);
+}
+
+@media (max-width: 860px) {
+  .process__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .process__item {
+    padding-right: clamp(1rem, 3vw, 2rem);
+  }
+  /* Apilado: fotografía arriba y frase debajo, a todo el ancho */
+  .process__media {
+    grid-column: 1 / span 6;
+  }
+  .process__closing {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .process__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .process__media {
+    grid-column: 1 / -1;
+  }
+  .process__item {
+    padding-bottom: 2rem;
+  }
+  .process__title {
+    margin-top: 0.75rem;
+  }
+}
+
+/* -------------------------------------------------------------
+   EQUIPO
+   ------------------------------------------------------------- */
+/* Contenedor de las profesionales. Rejilla de una columna: cada bloque
+   ocupa su propia fila y toma la altura que le pida su contenido.
+   Deliberadamente NO se igualan las alturas de las filas: hacerlo obliga
+   a estirar las fotografías y quedan alargadas. */
+.team {
+  --member-gap: clamp(4rem, 8vw, 8rem);
+  display: grid;
+  row-gap: var(--member-gap);
+}
+
+.member {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: clamp(2rem, 4vw, 3rem);
+  /* Alineación ARRIBA: el borde superior de la fotografía y el nombre
+     arrancan en la misma línea. Es lo que hace que texto y retrato se
+     lean a la misma altura, sin necesidad de estirar la fotografía. */
+  align-items: start;
+}
+
+/* El filete de separación se dibuja DENTRO del hueco entre bloques, con
+   posición absoluta, en lugar de como borde con relleno: así queda
+   centrado en el hueco y no añade altura a ninguno de los dos. */
+.member + .member::before {
+  content: '';
+  position: absolute;
+  top: calc(var(--member-gap) / -2);
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--c-line);
+}
+
+/* Las dos profesionales reciben EXACTAMENTE el mismo tratamiento: misma
+   anchura de fotografía, misma proporción (4:5) y misma escala
+   tipográfica. No hay jerarquía visual entre ellas; el cargo de cada una
+   ya lo dice el texto.
+   Para que la sección siga siendo editorial y no una rejilla de fichas,
+   lo que alterna es el LADO: la segunda fila va reflejada.
+
+   4 de 12 columnas: algo más contenidas que antes, y siempre con su
+   proporción real. Nunca se estiran para cuadrar alturas. */
+.member__media {
+  grid-column: 1 / span 4;
+}
+
+/* El bloque de texto lleva su propio ancho máximo, para que la medida de
+   lectura sea IDÉNTICA en todas y no dependa de la columna.
+
+   NO hay variante reflejada: todos los bloques llevan el retrato a la
+   izquierda y el texto a la derecha. Se probó alternar el lado y se
+   descartó: la sección debe leerse como una misma plantilla repetida,
+   sin que ninguna profesional tenga un tratamiento distinto. */
+.member__content {
+  grid-column: 6 / span 7;
+  max-width: 36rem;
+}
+
+.member__name {
+  margin-top: clamp(0.75rem, 1.5vw, 1.25rem);
+  font-size: clamp(2rem, 1.4rem + 2vw, 3.25rem);
+}
+
+.member__role {
+  margin-top: var(--s-3);
+  font-size: var(--t-sm);
+  color: var(--c-grey-600);
+}
+
+.member__bio {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  /* Sin ancho propio: lo marca `.member__content`, de modo que nombre,
+     cargo y biografía comparten exactamente el mismo bloque. */
+  margin-top: clamp(1.5rem, 2.5vw, 2.25rem);
+  padding-top: clamp(1.5rem, 2.5vw, 2.25rem);
+  border-top: 1px solid var(--c-line);
+  color: var(--c-grey-700);
+  line-height: 1.85;
+}
+
+.member__bio p:first-child {
+  color: var(--c-ink);
+  font-family: var(--f-serif);
+  font-size: var(--t-xl);
+  line-height: 1.4;
+  letter-spacing: var(--ls-tight);
+}
+
+@media (max-width: 1024px) {
+  .member__media {
+    grid-column: 1 / span 7;
+  }
+  /* Apilado: fotografía arriba y texto debajo, a todo el ancho */
+  .member__content {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .member__media {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* -------------------------------------------------------------
+   CONÓCENOS — galería del centro
+   Retícula uniforme de 3:4. Es la única sección a color: aquí se
+   ve el sitio tal y como es.
+   ------------------------------------------------------------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2vw, 1.75rem);
+}
+
+.gallery__trigger {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.gallery__frame {
+  /* Ligera elevación al pasar por encima, como en el resto de la web */
+  transition:
+    transform var(--d-mid) var(--ease),
+    box-shadow var(--d-mid) var(--ease);
+}
+
+.gallery__trigger:hover .gallery__frame,
+.gallery__trigger:focus-visible .gallery__frame {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px -26px rgba(10, 10, 10, 0.55);
+}
+
+/* El zoom se dispara desde el botón entero, no solo desde la imagen:
+   así también reacciona al pasar por encima del pie. */
+.gallery__trigger:hover .gallery__frame img {
+  transform: scale(1.04);
+}
+
+.gallery__caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+  font-size: var(--t-sm);
+  color: var(--c-grey-600);
+  transition: color var(--d-mid) var(--ease);
+}
+
+.gallery__trigger:hover .gallery__caption,
+.gallery__trigger:focus-visible .gallery__caption {
+  color: var(--c-ink);
+}
+
+.gallery__caption-icon {
+  flex-shrink: 0;
+  transition: transform var(--d-mid) var(--ease);
+}
+
+.gallery__trigger:hover .gallery__caption-icon {
+  transform: translate(3px, -3px);
+}
+
+.gallery__hint {
+  margin-top: var(--s-4);
+  font-size: var(--t-sm);
+  color: var(--c-grey-600);
+}
+
+@media (max-width: 900px) {
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* -------------------------------------------------------------
+   OPINIONES
+   ------------------------------------------------------------- */
+.reviews__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s-5);
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+/* Valoracion media. Solo se pinta cuando Google devuelve la cifra real;
+   nunca aparece un numero de relleno. */
+.reviews__summary {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+  padding-bottom: clamp(1.5rem, 2.5vw, 2rem);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.reviews__score {
+  font-family: var(--f-serif);
+  font-size: var(--t-h2);
+  font-weight: var(--w-serif-mid);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.reviews__score-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.reviews__count {
+  font-size: var(--t-sm);
+  color: var(--c-grey-700);
+}
+
+/* Los dos enlaces a la ficha: leer todas y escribir una.
+   Se muestran siempre, aunque aun no haya reseñas cargadas. */
+.reviews__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  margin-top: clamp(2rem, 3.5vw, 3rem);
+}
+
+@media (max-width: 560px) {
+  .reviews__foot .btn {
+    flex: 1 1 100%;
+    justify-content: center;
+  }
+}
+
+/* -------------------------------------------------------------
+   CONTACTO
+   ------------------------------------------------------------- */
+.contact__inner {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: clamp(3rem, 6vw, 4.5rem);
+}
+
+.contact__intro {
+  grid-column: 1 / span 5;
+}
+
+.contact__title {
+  margin-top: clamp(1rem, 2vw, 1.75rem);
+}
+
+.contact__text {
+  max-width: 40ch;
+  margin-top: var(--s-5);
+  font-size: var(--t-lg);
+  line-height: 1.65;
+  color: var(--c-grey-700);
+}
+
+.contact__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3) var(--s-4);
+  margin-top: clamp(2rem, 3.5vw, 2.75rem);
+}
+
+.contact__details {
+  grid-column: 7 / span 6;
+  border-top: 1px solid var(--c-line);
+}
+
+.contact__row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.42fr) minmax(0, 1fr);
+  gap: var(--s-4) var(--s-5);
+  padding-block: clamp(1.25rem, 2vw, 1.75rem);
+  border-bottom: 1px solid var(--c-line);
+}
+
+.contact__label {
+  font-family: var(--f-serif);
+  font-size: var(--t-eyebrow);
+  font-weight: var(--w-serif-bold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--c-grey-700);
+  padding-top: 0.35rem;
+}
+
+.contact__value {
+  font-size: var(--t-lg);
+  line-height: 1.55;
+}
+
+.contact__value--sm {
+  font-size: var(--t-base);
+  line-height: 1.7;
+}
+
+.contact__value a {
+  display: inline-block;
+}
+
+.contact__socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+}
+
+.contact__note {
+  margin-top: var(--s-5);
+  font-size: var(--t-xs);
+  line-height: 1.6;
+  color: var(--c-grey-600);
+}
+
+@media (max-width: 1024px) {
+  .contact__intro,
+  .contact__details {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 520px) {
+  .contact__row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+  .contact__label {
+    padding-top: 0;
+  }
+}
+
+/* -------------------------------------------------------------
+   FOOTER
+   ------------------------------------------------------------- */
+.footer {
+  background: var(--c-ink);
+  color: var(--c-white);
+  padding-top: clamp(3.5rem, 6vw, 6rem);
+  padding-bottom: clamp(2rem, 3vw, 3rem);
+}
+
+.footer__top {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--gutter);
+  row-gap: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(3rem, 5vw, 4.5rem);
+}
+
+.footer__brand {
+  grid-column: 1 / span 4;
+}
+
+.footer__logo img {
+  width: auto;
+  height: 42px;
+}
+
+.footer__slogan {
+  margin-top: var(--s-5);
+  font-family: var(--f-serif);
+  font-size: var(--t-xl);
+  line-height: 1.3;
+  letter-spacing: var(--ls-tight);
+  color: var(--c-white);
+}
+
+/* Colocacion explicita por posicion (nth-child, no nth-of-type:
+   las columnas no comparten tipo de elemento). */
+.footer__top > .footer__col:nth-child(2) {
+  grid-column: 6 / span 2;
+}
+
+.footer__top > .footer__col:nth-child(3) {
+  grid-column: 8 / span 3;
+}
+
+.footer__top > .footer__col:nth-child(4) {
+  grid-column: 11 / span 2;
+}
+
+.footer__col-title {
+  font-family: var(--f-serif);
+  font-size: var(--t-eyebrow);
+  font-weight: var(--w-serif-bold);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+.footer__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: var(--s-5);
+  font-size: var(--t-sm);
+}
+
+.footer__list a,
+.footer__list span {
+  color: rgba(255, 255, 255, 0.82);
+  transition: color var(--d-fast) var(--ease);
+}
+
+.footer__list a:hover {
+  color: var(--c-white);
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4) var(--s-6);
+  padding-top: clamp(1.5rem, 2.5vw, 2rem);
+  border-top: 1px solid var(--c-line-invert);
+  font-size: var(--t-xs);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Número de registro sanitario: dato obligado en publicidad sanitaria,
+   pero no es un reclamo. Va medio tono por debajo del copyright. */
+.footer__res {
+  margin-top: 0.35rem;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.75rem;
+}
+
+/* Enlace legal aun no disponible: texto inerte, nunca un enlace roto */
+.footer__legal .is-pending {
+  color: rgba(255, 255, 255, 0.5);
+  cursor: default;
+}
+
+/* Formato y peso del documento, a media voz: informa sin competir con
+   el nombre del enlace. No se subraya con él. */
+.link__meta {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: var(--t-xs);
+}
+
+@media (max-width: 900px) {
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+  .footer__top > .footer__col:nth-child(n) {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 520px) {
+  .footer__top > .footer__col:nth-child(n) {
+    grid-column: 1 / -1;
+  }
+}

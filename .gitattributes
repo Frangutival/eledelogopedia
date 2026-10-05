@@ -1,0 +1,14 @@
+# Finales de linea deterministas.
+# Sin esto, Windows guarda CRLF y cualquier cambio futuro aparece como si
+# se hubiera reescrito el archivo entero, aunque solo se toque una linea.
+* text=auto eol=lf
+
+# Binarios: que git no intente convertirlos nunca
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.webp binary
+*.pdf  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary

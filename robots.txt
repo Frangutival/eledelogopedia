@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# PENDIENTE: al contratar el dominio definitivo, descomentar y completar.
+# Sitemap: https://DOMINIO/sitemap.xml

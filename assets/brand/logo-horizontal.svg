@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PLACEHOLDER — SUSTITUIR POR EL LOGOTIPO OFICIAL DE ELE DE LOGOPEDIA.
+  Mantener este mismo nombre de archivo y una relación de aspecto similar (260 x 56)
+  para no tener que modificar nada del codigo.
+  Version para fondos CLAROS (trazo negro).
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" width="260" height="56" role="img" aria-label="ELE DE LOGOPEDIA">
+  <g fill="#0A0A0A">
+    <text x="0" y="40" font-family="Georgia, Garamond, Times New Roman, serif" font-size="38" letter-spacing="-1">LD</text>
+    <rect x="52" y="12" width="1" height="32" opacity="0.25"/>
+    <text x="68" y="26" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="12.5" letter-spacing="3.1" font-weight="400">ELE DE LOGOPEDIA</text>
+    <text x="69" y="42" font-family="Inter, Helvetica Neue, Arial, sans-serif" font-size="8" letter-spacing="4.6" font-weight="300" opacity="0.55">LOGOPEDA</text>
+  </g>
+</svg>

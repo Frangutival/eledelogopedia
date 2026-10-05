@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- PLACEHOLDER — sustituir por el monograma oficial LD cuando este disponible. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#0A0A0A"/>
+  <text x="32" y="45" text-anchor="middle" fill="#FFFFFF"
+        font-family="Georgia, Garamond, Times New Roman, serif" font-size="36" letter-spacing="-1.5">LD</text>
+</svg>

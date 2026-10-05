@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ELE DE LOGOPEDIA | Logopeda en El Esparragal, Murcia</title>
+    <meta
+      name="description"
+      content="Gabinete de logopedia en El Esparragal (Murcia), en Urb. Montepinar. Intervención personalizada en habla, lenguaje, voz y comunicación para niños, adolescentes y adultos. Primera consulta gratuita."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="author" content="ELE DE LOGOPEDIA" />
+
+    <!-- PENDIENTE: al publicar en un dominio definitivo, añadir aquí:
+         <link rel="canonical" href="https://DOMINIO/" />
+         <meta property="og:url" content="https://DOMINIO/" />
+         <meta property="og:image" content="https://DOMINIO/assets/img/og.jpg" />
+         (og:image debe ser una URL absoluta y una imagen .jpg/.png de 1200x630) -->
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="ELE DE LOGOPEDIA" />
+    <meta property="og:title" content="ELE DE LOGOPEDIA | Donde cada voz encuentra su camino" />
+    <meta
+      property="og:description"
+      content="Logopedia para niños, adolescentes y adultos en El Esparragal, Murcia. Intervención personalizada en habla, lenguaje, voz y comunicación."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="assets/brand/favicon.svg" type="image/svg+xml" />
+
+    <!-- Tipografía.
+         Fraunces (serif con carácter y peso real) es la voz de marca:
+         titulares, navegación, botones y antetítulos.
+         Inter queda para texto corrido, donde manda la legibilidad.
+         Para probar otra serif, cambiar esta URL y `--f-serif` en
+         assets/css/tokens.css. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600&display=swap"
+    />
+
+    <link rel="stylesheet" href="assets/css/tokens.css" />
+    <link rel="stylesheet" href="assets/css/base.css" />
+    <link rel="stylesheet" href="assets/css/layout.css" />
+    <link rel="stylesheet" href="assets/css/components.css" />
+    <link rel="stylesheet" href="assets/css/sections.css" />
+
+    <!-- Marca el documento como "con JavaScript". Las animaciones de entrada
+         solo se aplican si esta clase existe: sin JS el contenido se ve tal cual. -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+
+    <!-- Datos estructurados.
+         IMPORTANTE: mantener sincronizado con assets/js/data/site.js
+         No se incluyen valoraciones ni datos no facilitados. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MedicalBusiness",
+        "additionalType": "https://schema.org/HealthAndBeautyBusiness",
+        "name": "ELE DE LOGOPEDIA",
+        "slogan": "Donde cada voz encuentra su camino",
+        "description": "Gabinete de logopedia en El Esparragal (Murcia). Intervención personalizada en habla, lenguaje, lectura y escritura, voz, motricidad orofacial, neurodesarrollo y cognición.",
+        "medicalSpecialty": "SpeechPathology",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Avda. Castillo de Monteagudo, CC Montepinar, local 14, Urb. Montepinar",
+          "postalCode": "30163",
+          "addressLocality": "El Esparragal",
+          "addressRegion": "Murcia",
+          "addressCountry": "ES"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 38.0420587,
+          "longitude": -1.100604
+        },
+        "hasMap": "https://www.google.com/maps?cid=9035724548006069221",
+        "telephone": "+34623223788",
+        "email": "eledelogopedia.gabinete@gmail.com",
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "10:00",
+            "closes": "13:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "16:15",
+            "closes": "20:20"
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/elede.logopedia/",
+          "https://www.tiktok.com/@eledelogopedia"
+        ],
+        "identifier": {
+          "@type": "PropertyValue",
+          "name": "Registro de Establecimientos Sanitarios (RES)",
+          "value": "40004753"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Lourdes Pujante Sánchez",
+          "jobTitle": "Logopeda, fundadora y directora de ELE DE LOGOPEDIA",
+          "hasCredential": {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "degree",
+            "name": "Graduada en Logopedia",
+            "recognizedBy": {
+              "@type": "CollegeOrUniversity",
+              "name": "Universidad de Murcia"
+            }
+          },
+          "memberOf": {
+            "@type": "Organization",
+            "name": "Colegio Profesional de Logopedas de la Región de Murcia",
+            "url": "https://logopedasmurcia.es/"
+          }
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido principal</a>
+
+    <!-- =========================================================
+         CABECERA
+         ========================================================= -->
+    <header class="header">
+      <div class="container header__inner">
+        <!-- Dos versiones del logotipo: la blanca se revela sobre el hero
+             y la negra al hacer scroll. Solo la negra lleva alt, para que
+             el lector de pantalla no anuncie la marca dos veces. -->
+        <a class="header__logo" href="#inicio" aria-label="ELE DE LOGOPEDIA, ir al inicio">
+          <img
+            class="header__logo-dark"
+            src="assets/brand/logo-horizontal.svg"
+            alt="ELE DE LOGOPEDIA"
+            width="260"
+            height="56"
+          />
+          <img
+            class="header__logo-light"
+            src="assets/brand/logo-horizontal-blanco.svg"
+            alt=""
+            aria-hidden="true"
+            width="260"
+            height="56"
+          />
+        </a>
+
+        <nav class="nav" aria-label="Navegación principal">
+          <a class="nav__link" href="#inicio">Inicio</a>
+          <a class="nav__link" href="#servicios">Servicios</a>
+          <a class="nav__link" href="#equipo">Equipo</a>
+          <a class="nav__link" href="#conocenos">Conócenos</a>
+          <a class="nav__link" href="#opiniones">Opiniones</a>
+          <a class="nav__link" href="#contacto">Contacto</a>
+        </nav>
+
+        <div class="header__actions">
+          <a class="btn btn--primary btn--sm" href="#contacto">Solicitar información</a>
+
+          <button
+            type="button"
+            class="burger"
+            aria-expanded="false"
+            aria-controls="menu-movil"
+            aria-label="Abrir menú"
+          >
+            <span class="burger__box" aria-hidden="true">
+              <span class="burger__line"></span>
+              <span class="burger__line"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Menú móvil: su contenido se genera desde la navegación principal -->
+    <div class="mobile-menu" id="menu-movil"></div>
+
+    <main id="contenido" tabindex="-1">
+      <!-- =========================================================
+           HERO
+           ========================================================= -->
+      <section class="hero on-dark" id="inicio" aria-labelledby="titulo-principal">
+        <!-- Fotografía real del gabinete, a sangre.
+             Es una imagen vertical en un hueco apaisado: `object-fit: cover`
+             recorta, y el encuadre se controla con `object-position` en
+             sections.css (--hero-focus). -->
+        <div class="hero__bg">
+          <img
+            src="assets/img/hero.jpg"
+            alt="Lourdes Pujante, logopeda y directora de ELE DE LOGOPEDIA, en el gabinete de El Esparragal, Murcia"
+            width="1000"
+            height="1600"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <span class="hero__scrim" aria-hidden="true"></span>
+        </div>
+
+        <div class="container hero__inner">
+          <div class="hero__content">
+            <p class="eyebrow" data-reveal>ELE DE LOGOPEDIA</p>
+
+            <h1 class="hero__title" id="titulo-principal" data-reveal data-reveal-delay="90">
+              Donde cada voz encuentra su camino
+            </h1>
+
+            <p class="hero__lead" data-reveal data-reveal-delay="200">
+              Logopedia para niños, adolescentes y adultos, desde una mirada cercana y
+              personalizada.
+            </p>
+
+            <div class="hero__actions" data-reveal data-reveal-delay="300">
+              <a class="btn btn--primary" href="#contacto">
+                Solicitar información
+                <span class="btn__arrow" aria-hidden="true">→</span>
+              </a>
+              <a class="btn btn--outline" href="#servicios">Conocer nuestros servicios</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="container hero__foot" data-reveal data-reveal-delay="420">
+          <p class="hero__note">
+            <strong>Primera consulta gratuita</strong>
+            Conoce nuestro enfoque y cuéntanos cómo podemos ayudarte.
+          </p>
+
+          <a class="hero__scroll" href="#filosofia">
+            <span class="hero__scroll-line" aria-hidden="true"></span>
+            Desliza para descubrir
+          </a>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           FILOSOFÍA
+           ========================================================= -->
+      <section class="section philosophy" id="filosofia" aria-labelledby="titulo-filosofia">
+        <img
+          class="philosophy__mark"
+          src="assets/brand/monograma-ld.svg"
+          alt=""
+          aria-hidden="true"
+          width="120"
+          height="120"
+          loading="lazy"
+        />
+
+        <div class="container philosophy__inner">
+          <figure class="philosophy__media media media--3x4 media--zoom" data-reveal>
+            <!-- Fotografía real: 1200x1600 es 3:4 exacto, no se recorta nada. -->
+            <img
+              src="assets/img/filosofia.jpg"
+              alt="Lourdes Pujante durante una sesión de logopedia en el gabinete ELE DE LOGOPEDIA"
+              width="1200"
+              height="1600"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+
+          <div class="philosophy__content">
+            <p class="eyebrow" data-reveal>Filosofía</p>
+
+            <h2 class="philosophy__statement" id="titulo-filosofia" data-reveal data-reveal-delay="90">
+              Cada persona necesita su propio tiempo, sus propias herramientas y su propio
+              camino.
+            </h2>
+
+            <p class="philosophy__answer" data-reveal data-reveal-delay="160">
+              Por eso, en <strong>ELE DE LOGOPEDIA</strong>, hacemos intervención
+              personalizada.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           SERVICIOS
+           ========================================================= -->
+      <section class="section section--tint" id="servicios" aria-labelledby="titulo-servicios">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-head__title">
+              <p class="eyebrow" data-reveal>Servicios</p>
+              <h2 id="titulo-servicios" data-reveal data-reveal-delay="80">
+                Cada persona es diferente.
+              </h2>
+            </div>
+            <div class="section-head__aside" data-reveal data-reveal-delay="140">
+              <p class="section-intro">
+                Por eso, adaptamos la intervención a sus necesidades, objetivos y ritmo.
+              </p>
+              <p class="services__hint">Selecciona un área para ver el detalle.</p>
+            </div>
+          </div>
+
+          <!-- Las tarjetas se generan desde assets/js/data/services.js -->
+          <div class="services__list" data-services></div>
+
+          <noscript>
+            <!-- Copia de respaldo para navegadores sin JavaScript.
+                 Si cambias los textos en assets/js/data/services.js,
+                 actualiza también este bloque. -->
+            <dl class="services__list">
+              <dt>Habla</dt>
+              <dd>
+                Articulación y pronunciación, dificultades en los sonidos del habla,
+                inteligibilidad, fluidez, ritmo y velocidad del habla, apraxia y disartria.
+              </dd>
+              <dt>Lenguaje y comunicación</dt>
+              <dd>
+                Comprensión y expresión del lenguaje, vocabulario, construcción de frases,
+                narración, comunicación social y pragmática.
+              </dd>
+              <dt>Lectura y escritura</dt>
+              <dd>
+                Conciencia fonológica, adquisición de la lectoescritura, dislexia, disgrafía,
+                disortografía, fluidez y comprensión lectora y expresión escrita.
+              </dd>
+              <dt>Voz</dt>
+              <dd>
+                Disfonías, fatiga vocal, alteraciones de la calidad vocal, lesiones, higiene
+                vocal y reeducación de la voz.
+              </dd>
+              <dt>Motricidad orofacial y terapia miofuncional</dt>
+              <dd>
+                Respiración, postura y movilidad lingual, musculatura orofacial, masticación,
+                deglución, hábitos orales y otras funciones relacionadas con el sistema
+                orofacial.
+              </dd>
+              <dt>Desarrollo y neurodesarrollo</dt>
+              <dd>
+                Dificultades en la adquisición del lenguaje y la comunicación, trastornos del
+                desarrollo, TEA y otras condiciones del neurodesarrollo.
+              </dd>
+              <dt>Cognición</dt>
+              <dd>
+                Atención, memoria, funciones ejecutivas, comprensión, razonamiento y otras
+                capacidades que pueden afectar a la comunicación.
+              </dd>
+              <dt>Alteraciones asociadas a cirugía y otras condiciones médicas</dt>
+              <dd>
+                Rehabilitación de la comunicación, voz, deglución y funciones orofaciales tras
+                determinadas cirugías, tratamientos médicos, traqueostomías y laringectomías.
+              </dd>
+            </dl>
+          </noscript>
+
+          <div class="services__foot" data-reveal>
+            <a class="btn btn--primary" href="#contacto">
+              Solicitar información
+              <span class="btn__arrow" aria-hidden="true">→</span>
+            </a>
+            <p class="services__foot-text">Primera consulta gratuita.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           FORMA DE TRABAJAR
+           ========================================================= -->
+      <section
+        class="section on-dark"
+        id="forma-de-trabajar"
+        aria-labelledby="titulo-forma-de-trabajar"
+      >
+        <div class="container">
+          <div class="section-head">
+            <div class="section-head__title">
+              <p class="eyebrow" data-reveal>Forma de trabajar</p>
+              <h2 id="titulo-forma-de-trabajar" data-reveal data-reveal-delay="80">
+                Intervención personalizada
+              </h2>
+            </div>
+          </div>
+
+          <!-- Los pasos se generan desde assets/js/data/process.js -->
+          <div class="process__grid" data-process></div>
+
+          <!-- Cierre de la sección: la frase que resume el método, junto a una
+               fotografía de una sesión real. La imagen va en blanco y negro
+               como el resto de fotografías de sección; el color queda
+               reservado a los retratos del equipo y a "Conócenos". -->
+          <div class="process__outro">
+            <figure class="process__media media media--3x4 media--zoom" data-reveal>
+              <!-- Fotografía real: 1200x1600 es 3:4 exacto, no se recorta nada. -->
+              <img
+                src="assets/img/sesion-juego.jpg"
+                alt="Una niña celebra un acierto con su logopeda durante una sesión, con un juego de letras sobre la mesa"
+                width="1200"
+                height="1600"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+
+            <p class="process__closing" data-reveal data-reveal-delay="120">
+              Cada persona necesita su propio tiempo, sus propias herramientas y su propio
+              camino.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           EQUIPO
+           ========================================================= -->
+      <section class="section" id="equipo" aria-labelledby="titulo-equipo">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-head__title">
+              <p class="eyebrow" data-reveal>Equipo</p>
+              <h2 id="titulo-equipo" data-reveal data-reveal-delay="80">Nuestro equipo</h2>
+            </div>
+          </div>
+
+          <!-- Las profesionales se generan desde assets/js/data/team.js -->
+          <div class="team" data-team></div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           CONÓCENOS — galería del centro
+           ========================================================= -->
+      <section class="section" id="conocenos" aria-labelledby="titulo-conocenos">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-head__title">
+              <p class="eyebrow" data-reveal>Conócenos</p>
+              <h2 id="titulo-conocenos" data-reveal data-reveal-delay="80">
+                Así es por dentro
+              </h2>
+            </div>
+            <div class="section-head__aside" data-reveal data-reveal-delay="140">
+              <p class="section-intro">
+                Un espacio pensado para que cada persona se sienta escuchada, acompañada y
+                segura desde que entra por la puerta.
+              </p>
+              <p class="gallery__hint">Toca cualquier fotografía para verla más grande.</p>
+            </div>
+          </div>
+
+          <!-- Las fotografías se generan desde assets/js/data/gallery.js -->
+          <ul class="gallery" data-gallery></ul>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           OPINIONES
+           ========================================================= -->
+      <section class="section section--tint" id="opiniones" aria-labelledby="titulo-opiniones">
+        <div class="container">
+          <div class="reviews__head">
+            <div>
+              <p class="eyebrow" data-reveal>Opiniones</p>
+              <h2 id="titulo-opiniones" data-reveal data-reveal-delay="80">
+                Lo que dicen de nosotros
+              </h2>
+            </div>
+            <!-- Controles del carrusel (solo si hay reseñas que desplazar) -->
+            <div class="carousel-controls" data-reviews-controls hidden></div>
+          </div>
+
+          <!-- Las reseñas se generan desde assets/js/data/reviews.js.
+               No hay ningún testimonio de ejemplo. -->
+          <div data-reviews></div>
+
+          <div class="reviews__foot" data-reviews-foot></div>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           CONTACTO
+           ========================================================= -->
+      <section class="section" id="contacto" aria-labelledby="titulo-contacto">
+        <div class="container contact__inner">
+          <div class="contact__intro">
+            <p class="eyebrow" data-reveal>Contacto</p>
+
+            <h2 class="contact__title" id="titulo-contacto" data-reveal data-reveal-delay="80">
+              Hablemos
+            </h2>
+
+            <p class="contact__text" data-reveal data-reveal-delay="140">
+              Estamos aquí para escucharte y ayudarte a encontrar el camino adecuado.
+            </p>
+
+            <!-- Botones generados desde assets/js/data/site.js -->
+            <div class="contact__actions" data-contact-actions data-reveal data-reveal-delay="200"></div>
+
+            <p class="contact__note" data-reveal data-reveal-delay="240">
+              Primera consulta gratuita.
+            </p>
+          </div>
+
+          <!-- Datos generados desde assets/js/data/site.js -->
+          <div class="contact__details" data-contact-details data-reveal data-reveal-delay="120"></div>
+
+          <noscript>
+            <!-- Copia de respaldo para navegadores sin JavaScript. -->
+            <div class="contact__details">
+              <address>
+                Avda. Castillo de Monteagudo, CC Montepinar, local 14, Urb. Montepinar, 30163,
+                El Esparragal, Murcia
+              </address>
+              <p><a href="tel:+34623223788">623 223 788</a></p>
+              <p>
+                <a href="mailto:eledelogopedia.gabinete@gmail.com"
+                  >eledelogopedia.gabinete@gmail.com</a
+                >
+              </p>
+              <p>Lunes a viernes: 10:00 – 13:00 · 16:15 – 20:20</p>
+            </div>
+          </noscript>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================================
+         FOOTER
+         ========================================================= -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__top">
+          <div class="footer__brand">
+            <a class="footer__logo" href="#inicio" aria-label="ELE DE LOGOPEDIA, ir al inicio">
+              <img
+                src="assets/brand/logo-horizontal-blanco.svg"
+                alt="ELE DE LOGOPEDIA"
+                width="260"
+                height="56"
+                loading="lazy"
+              />
+            </a>
+            <p class="footer__slogan">Donde cada voz encuentra su camino</p>
+          </div>
+
+          <nav class="footer__col" aria-label="Navegación del pie de página">
+            <p class="footer__col-title">Navegación</p>
+            <ul class="footer__list">
+              <li><a class="link" href="#inicio">Inicio</a></li>
+              <li><a class="link" href="#servicios">Servicios</a></li>
+              <li><a class="link" href="#equipo">Equipo</a></li>
+              <li><a class="link" href="#conocenos">Conócenos</a></li>
+              <li><a class="link" href="#opiniones">Opiniones</a></li>
+              <li><a class="link" href="#contacto">Contacto</a></li>
+            </ul>
+          </nav>
+
+          <div class="footer__col">
+            <p class="footer__col-title">Contacto</p>
+            <ul class="footer__list" data-footer-contact></ul>
+          </div>
+
+          <div class="footer__col">
+            <p class="footer__col-title">Redes</p>
+            <ul class="footer__list" data-footer-social></ul>
+          </div>
+        </div>
+
+        <div class="footer__bottom">
+          <div>
+            <p>© <span data-year>2026</span> ELE DE LOGOPEDIA. Todos los derechos reservados.</p>
+            <!-- Número de registro sanitario: es práctica exigible en
+                 publicidad de centros sanitarios y conviene que esté a la
+                 vista en todas las páginas. -->
+            <p class="footer__res">Centro sanitario inscrito en el RES con el nº 40004753</p>
+          </div>
+          <!-- Enlaces legales. Ver assets/js/data/site.js -> legal -->
+          <div class="footer__legal" data-footer-legal></div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- =========================================================
+         SCRIPTS — `defer` conserva el orden y no bloquea el render
+         ========================================================= -->
+    <script src="assets/js/data/site.js" defer></script>
+    <script src="assets/js/data/services.js" defer></script>
+    <script src="assets/js/data/process.js" defer></script>
+    <script src="assets/js/data/team.js" defer></script>
+    <script src="assets/js/data/gallery.js" defer></script>
+    <script src="assets/js/data/reviews.js" defer></script>
+
+    <script src="assets/js/utils/dom.js" defer></script>
+
+    <script src="assets/js/components/nav.js" defer></script>
+    <script src="assets/js/components/services.js" defer></script>
+    <script src="assets/js/components/process.js" defer></script>
+    <script src="assets/js/components/team.js" defer></script>
+    <script src="assets/js/components/gallery.js" defer></script>
+    <script src="assets/js/components/reviews.js" defer></script>
+    <script src="assets/js/components/contact.js" defer></script>
+    <script src="assets/js/components/reveal.js" defer></script>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>

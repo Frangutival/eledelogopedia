@@ -1,0 +1,33 @@
+# =============================================================
+# MATERIAL DE ORIGEN — no debe subirse al repositorio
+# -------------------------------------------------------------
+# Son los archivos tal y como los entregó la clienta. La web ya no
+# los usa, y varios contienen DATOS PERSONALES que se quitaron a
+# propósito del sitio publicado:
+#
+#   - AvisoLegal.pdf y Política de privacidad.pdf llevan el teléfono
+#     (673 720 771) y el correo particular (lourdespujant@gmail.com).
+#   - assets/legal/ son copias de esos mismos PDF. OJO: todo lo que
+#     cuelga de assets/ se sirve en abierto, así que si se subieran
+#     quedarían descargables desde cualquier navegador.
+#   - img/ son las fotografías originales sin recortar ni comprimir,
+#     incluidas las de pacientes.
+#
+# Se quedan en el disco de la clienta. No hacen falta para la web.
+# =============================================================
+/img/
+/assets/legal/
+/*.pdf
+/*.docx
+
+# Sistema operativo
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Editores
+.vscode/
+.idea/
+
+# Vercel
+.vercel/

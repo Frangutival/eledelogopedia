@@ -1,0 +1,14 @@
+# Archivos que NO deben publicarse aunque estén en el repositorio.
+#
+# Vercel sirve en abierto todo lo que sube: un .md en la raíz queda
+# descargable en tudominio.com/PENDIENTE.md. Y PENDIENTE.md contiene
+# notas internas sobre el gabinete y sobre los documentos de la
+# asesoría que no tienen por qué leerse desde fuera.
+*.md
+
+# Duplica lo del .gitignore, por si alguna vez se despliega desde la
+# línea de comandos en lugar de desde el repositorio.
+img/
+assets/legal/
+*.pdf
+*.docx

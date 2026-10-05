@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  PLACEHOLDER — monograma "LD" aislado, usado solo como detalle grafico muy sutil
+  (marca de agua en la seccion de filosofia). Sustituir por el monograma oficial.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" aria-hidden="true" focusable="false">
+  <text x="60" y="86" text-anchor="middle" fill="#0A0A0A"
+        font-family="Georgia, Garamond, Times New Roman, serif" font-size="96" letter-spacing="-3">LD</text>
+</svg>
