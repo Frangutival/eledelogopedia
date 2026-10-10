@@ -16,7 +16,16 @@
       ]
     },
     {
-      "source": "/assets/(img|brand)/(.*)",
+      "source": "/assets/img/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/assets/brand/(.*)",
       "headers": [
         {
           "key": "Cache-Control",

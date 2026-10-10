@@ -8,7 +8,12 @@
 
 # Duplica lo del .gitignore, por si alguna vez se despliega desde la
 # línea de comandos en lugar de desde el repositorio.
-img/
+#
+# OJO CON LA BARRA INICIAL: `/img/` es SOLO la carpeta img de la raíz.
+# Sin ella, `img/` significaría "cualquier carpeta llamada img, a
+# cualquier profundidad", y se llevaría por delante `assets/img/`, que
+# es donde están todas las fotografías de la web.
+/img/
 assets/legal/
 *.pdf
 *.docx
