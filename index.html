@@ -50,9 +50,22 @@
     <link rel="stylesheet" href="assets/css/sections.css" />
 
     <!-- Marca el documento como "con JavaScript". Las animaciones de entrada
-         solo se aplican si esta clase existe: sin JS el contenido se ve tal cual. -->
+         solo se aplican si esta clase existe: sin JS el contenido se ve tal cual.
+
+         El temporizador es una red de seguridad. Las secciones llevan
+         `data-reveal`, que las deja en opacity:0 hasta que JavaScript las
+         hace aparecer. Si la conexión es lenta o algún script falla, el
+         visitante vería una página en blanco sin saber por qué. Pasado un
+         segundo y pico el contenido se muestra igualmente, con animación o
+         sin ella. reveal.js cancela el temporizador cuando llega a tiempo. -->
     <script>
-      document.documentElement.classList.add('js');
+      (function () {
+        var raiz = document.documentElement;
+        raiz.classList.add('js');
+        window.__eleMostrarTodo = window.setTimeout(function () {
+          raiz.classList.add('sin-entrada');
+        }, 1200);
+      })();
     </script>
 
     <!-- Datos estructurados.
@@ -210,20 +223,26 @@
           <span class="hero__scrim" aria-hidden="true"></span>
         </div>
 
+        <!-- OJO: el hero NO lleva `data-reveal`.
+             Esa animación la activa JavaScript, y mientras no llega deja el
+             contenido en opacity:0. En el hero eso significa pantalla en
+             blanco hasta que terminan de descargarse los 16 scripts, cosa
+             que en el móvil son segundos. Aquí la entrada se hace con una
+             animación de CSS, que funciona desde el primer instante. -->
         <div class="container hero__inner">
           <div class="hero__content">
-            <p class="eyebrow" data-reveal>ELE DE LOGOPEDIA</p>
+            <p class="eyebrow">ELE DE LOGOPEDIA</p>
 
-            <h1 class="hero__title" id="titulo-principal" data-reveal data-reveal-delay="90">
+            <h1 class="hero__title" id="titulo-principal">
               Donde cada voz encuentra su camino
             </h1>
 
-            <p class="hero__lead" data-reveal data-reveal-delay="200">
+            <p class="hero__lead">
               Logopedia para niños, adolescentes y adultos, desde una mirada cercana y
               personalizada.
             </p>
 
-            <div class="hero__actions" data-reveal data-reveal-delay="300">
+            <div class="hero__actions">
               <a class="btn btn--primary" href="#contacto">
                 Solicitar información
                 <span class="btn__arrow" aria-hidden="true">→</span>
@@ -233,7 +252,7 @@
           </div>
         </div>
 
-        <div class="container hero__foot" data-reveal data-reveal-delay="420">
+        <div class="container hero__foot">
           <p class="hero__note">
             <strong>Primera consulta gratuita</strong>
             Conoce nuestro enfoque y cuéntanos cómo podemos ayudarte.

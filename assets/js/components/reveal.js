@@ -9,6 +9,14 @@ window.ELE = window.ELE || {};
 window.ELE.initReveal = function initReveal(scope) {
   'use strict';
 
+  // Hemos llegado a tiempo: se cancela la red de seguridad que index.html
+  // programa en su <script> de cabecera para que el contenido no se quede
+  // invisible si este archivo tarda o no llega.
+  if (window.__eleMostrarTodo) {
+    window.clearTimeout(window.__eleMostrarTodo);
+    window.__eleMostrarTodo = null;
+  }
+
   var dom = window.ELE.dom;
   var targets = dom.qsa('[data-reveal]', scope || document);
   if (!targets.length) return;

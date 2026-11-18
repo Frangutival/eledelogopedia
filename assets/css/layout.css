@@ -154,6 +154,20 @@
   transform: none;
 }
 
+/* Red de seguridad. index.html añade `sin-entrada` a <html> si pasado algo
+   más de un segundo el script de animaciones todavía no se ha ejecutado:
+   conexión lenta, script que no llega, error en otro archivo. Entonces el
+   contenido se muestra sin más. Más vale una página sin animación que una
+   página en blanco.
+
+   El selector lleva `html` delante a propósito: así gana a `.js [data-reveal]`
+   por especificidad y no por orden de aparición, que es frágil. */
+html.sin-entrada [data-reveal] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .js [data-reveal] {
     opacity: 1;

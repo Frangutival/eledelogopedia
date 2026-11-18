@@ -84,6 +84,54 @@
   justify-content: center;
 }
 
+/* -------------------------------------------------------------
+   ENTRADA DEL HERO, SOLO CON CSS
+   El resto de la web aparece con `data-reveal`, que lo gobierna
+   JavaScript. Aquí no: el hero es lo primero que se ve y no puede
+   quedarse invisible esperando a que terminen de descargarse los
+   scripts. Con una animación de CSS arranca en cuanto el navegador
+   lee la hoja de estilos, sin depender de nada más.
+   ------------------------------------------------------------- */
+@keyframes heroEntra {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.hero__content > *,
+.hero__foot {
+  /* `both` mantiene el estado inicial durante la espera previa */
+  animation: heroEntra 0.7s var(--ease-out) both;
+}
+
+.hero__content > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.hero__content > *:nth-child(2) {
+  animation-delay: 0.14s;
+}
+.hero__content > *:nth-child(3) {
+  animation-delay: 0.23s;
+}
+.hero__content > *:nth-child(4) {
+  animation-delay: 0.32s;
+}
+.hero__foot {
+  animation-delay: 0.42s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__content > *,
+  .hero__foot {
+    animation: none;
+  }
+}
+
 /* El texto se queda dentro de la zona protegida por el degradado lateral
    y por debajo del 58% del ancho, de modo que no llega al rostro de la
    fotografía (que arranca en torno al 60%). */
