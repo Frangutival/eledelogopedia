@@ -55,6 +55,31 @@ Si en algún momento se consigue una **fotografía apaisada** del gabinete,
 el hero ganaría bastante: se vería la composición completa en lugar de una
 banda recortada.
 
+### El hero está retocado: se quitó el aire acondicionado
+
+La fotografía original tenía el **aparato de aire acondicionado** en la
+pared, arriba a la derecha (x 590-938, y 63-210, más su sombra hasta
+y≈260). Se ha borrado y reconstruido la pared.
+
+Cómo se hizo, por si alguna vez hay que repetirlo o revertirlo:
+
+- Se ajustó por mínimos cuadrados una **superficie cuadrática** al
+  degradado real de la pared de alrededor (la pared se aclara hacia abajo
+  y se oscurece hacia la derecha) y se continuó esa superficie por debajo
+  del aparato. El error del modelo frente a la pared real es de ±4
+  niveles sobre 255, así que el relleno es indistinguible.
+- Se añadió grano con la misma desviación típica medida en la pared
+  (σ≈2). Sin grano, una zona perfectamente lisa en medio de una foto con
+  ruido de sensor canta a distancia.
+- La zona repintada llega hasta el borde superior y el derecho de la
+  foto. Es deliberado: al dejarla corta, el fundido dejaba pasar el canto
+  del aparato y asomaba como una sombra vertical.
+
+**El original sin retocar está guardado** en `img/hero-sin-retocar.jpg`,
+junto con el script que hizo el trabajo (`img/quitar-aire.ps1`). Esa
+carpeta no se publica ni entra en el repositorio, así que ambos viven
+solo en el disco de la clienta.
+
 ### Galería "Conócenos" — ✅ montada
 
 Las nueve fotografías restantes de `img/` están en
