@@ -80,9 +80,33 @@ Vercel solo.
   `/aviso-legal.html`. Los enlaces internos conservan el `.html` para que
   el sitio siga funcionando con doble clic en local; Vercel redirige.
 - **Cabeceras de seguridad** en todas las páginas.
-- **Caché**: las imágenes se guardan un día; **el CSS y el JavaScript,
-  nada**. Es deliberado: los archivos no llevan versión en el nombre, así
-  que si se cachearan, un cambio de estilo tardaría semanas en verse.
+- **Caché**: **nada de `assets/` se guarda** más de lo imprescindible.
+
+### Por qué la caché está desactivada, y cómo cambiar una imagen
+
+Ningún archivo lleva versión en el nombre. Si el navegador los guardase,
+cualquier cambio tardaría días en verse.
+
+`max-age=0, must-revalidate` **no significa descargarlo todo en cada
+visita**: el navegador pregunta "¿ha cambiado?" y, si no, el servidor
+responde "sigue igual" sin reenviar el archivo. Es una pregunta
+minúscula a cambio de que todo cambio se vea al instante.
+
+Aun así, **al sustituir una imagen hay que forzar la recarga**, porque
+los móviles que ya la tenían guardada de antes no preguntarán. Se hace
+subiendo el número de versión del `src` en `index.html`:
+
+```html
+<img src="assets/img/hero.jpg?v=2" ...>
+```
+
+Para el navegador `?v=3` es una dirección distinta, así que no puede
+servir la copia antigua. Es un segundo de trabajo y evita el clásico "yo
+lo sigo viendo igual".
+
+Esto pasó de verdad: al quitar el aire acondicionado de la foto del hero,
+los móviles que ya habían entrado seguían mostrando la versión con el
+aparato, porque la regla de entonces guardaba las imágenes un día entero.
 
 ## Estructura
 

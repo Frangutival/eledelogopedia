@@ -212,8 +212,14 @@
              recorta, y el encuadre se controla con `object-position` en
              sections.css (--hero-focus). -->
         <div class="hero__bg">
+          <!-- El `?v=2` NO es un adorno: es lo que obliga a los móviles que
+               ya habían visitado la web a descargar la foto otra vez. Para
+               el navegador es una dirección distinta, así que no puede
+               servir la copia guardada. Al retocar esta foto (se quitó el
+               aire acondicionado de la pared) hay que subir el número, o
+               quien ya la tuviera en caché seguiría viendo la antigua. -->
           <img
-            src="assets/img/hero.jpg"
+            src="assets/img/hero.jpg?v=2"
             alt="Lourdes Pujante, logopeda y directora de ELE DE LOGOPEDIA, en el gabinete de El Esparragal, Murcia"
             width="1000"
             height="1600"
